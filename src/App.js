@@ -27,6 +27,13 @@ export class App extends React.Component {
         "title": "2nd Place title",
         "lat": "37.778519",
         "lng": "-122.405640"
+        },
+        {
+        "id": "3",
+        "name": "3rd Place",
+        "title": "3rd Place title",
+        "lat": "37.759703",
+        "lng": "-122.428093"
         }
     ]
     }
@@ -76,22 +83,10 @@ export class App extends React.Component {
     }
   }
 
-  onMouseoverMarker(props, marker, e) {
-   //..
-  }
-
-  /*fetchPlaces(mapProps, map) {
-    const {google} = mapProps;
-    const service = new google.maps.places.PlacesService(map);
-  } */
-
-
-
   render() {
-      const markers = this.state.selectedPlace.map((venue, i) => {
+
+        const markers = this.state.selectedPlace.map((venue, i) => {
         const marker = {
-          title: venue.title,
-          name: venue.name,
           position: {
             lat: venue.lat,
             lng: venue.lng
@@ -104,27 +99,19 @@ export class App extends React.Component {
         <Map
           google = {this.props.google}
           onClick = {this.onMapClick}
-          zoom = {14}>
-
+          zoom = {14}
+          >
           {markers}
-
-          <Marker
-              title={this.state.selectedPlace.title}
-              name={this.state.selectedPlace.name}
-              position={{lat: 37.759703, lng: -122.428093}}
-              onClick={this.onMarkerClick}
-            />
-
 
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
               <div>
-                <h1>{this.state.selectedPlace.name}</h1>
+                <h1>{this.state.selectedPlace[0].name}</h1>
               </div>
           </InfoWindow>
 
-          <ListItems venues={this.state.venues}/>
+          <ListItems venues={this.state.selectedPlace}/>
 
           <Search />
         </Map>

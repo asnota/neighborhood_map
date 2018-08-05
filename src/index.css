@@ -4,10 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-.container {
-  display: flex;
-  justify-content: left;
-}
 
 .search-places-bar {
   position: fixed;
