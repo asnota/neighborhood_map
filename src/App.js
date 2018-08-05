@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
+import Search from './Search'
 
 export class App extends React.Component {
   constructor(props) {
@@ -46,7 +46,6 @@ export class App extends React.Component {
   fetchPlaces(mapProps, map) {
     const {google} = mapProps;
     const service = new google.maps.places.PlacesService(map);
-    // ...
   }
 
   render() {
@@ -87,7 +86,10 @@ export class App extends React.Component {
                 <h1>{this.state.selectedPlace.name}</h1>
               </div>
           </InfoWindow>
+          
+          <Search />
         </Map>
+
       );
     }
 
