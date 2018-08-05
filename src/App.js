@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Search from './Search'
+import ListItems from './ListItems'
 
 export class App extends React.Component {
   constructor(props) {
@@ -10,11 +11,31 @@ export class App extends React.Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: [{
+        "id": "1",
+        "name": "1st Place",
+        "title": "1st Place title"
+      },
+      {
+        "id": "2",
+        "name": "2nd Place",
+        "title": "2nd Place title"
+      },
+      {
+        "id": "3",
+        "name": "3rd Place",
+        "title": "3rd Place title"
+      }]
     }
-    // binding this to event-handler functions
+
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
+  }
+
+  componentDidMount(){
+    if (this.marker) {
+      this.marker.setMap();
+    }
   }
 
   componentWillUnmount() {
@@ -40,13 +61,13 @@ export class App extends React.Component {
   }
 
   onMouseoverMarker(props, marker, e) {
-  // ..
+   //..
   }
 
-  fetchPlaces(mapProps, map) {
+  /*fetchPlaces(mapProps, map) {
     const {google} = mapProps;
     const service = new google.maps.places.PlacesService(map);
-  }
+  } */
 
   render() {
       return (
@@ -57,22 +78,22 @@ export class App extends React.Component {
         >
 
           <Marker
-            title={'Fancy place'}
-            name={'Fancy place'}
+            title= {this.state.selectedPlace.title}
+            name={this.state.selectedPlace.name}
             position={{lat: 37.768519, lng: -122.415640}}
             onMouseover={this.onMouseoverMarker}
             onClick={this.onMarkerClick}
           />
           <Marker
-            title={'SOMA'}
-            name={'SOMA'}
+            title={this.state.selectedPlace.title}
+            name={this.state.selectedPlace.name}
             position={{lat: 37.778519, lng: -122.405640}}
             onMouseover={this.onMouseoverMarker}
             onClick={this.onMarkerClick}
           />
           <Marker
-            title={'Dolores park'}
-            name={'Dolores park'}
+            title={this.state.selectedPlace.title}
+            name={this.state.selectedPlace.name}
             position={{lat: 37.759703, lng: -122.428093}}
             onMouseover={this.onMouseoverMarker}
             onClick={this.onMarkerClick}
@@ -86,8 +107,9 @@ export class App extends React.Component {
                 <h1>{this.state.selectedPlace.name}</h1>
               </div>
           </InfoWindow>
-          
+          <ListItems selectedPlace={this.state.selectedPlace}/>
           <Search />
+
         </Map>
 
       );

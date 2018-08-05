@@ -4,6 +4,11 @@ body {
   font-family: sans-serif;
 }
 
+.container {
+  display: flex;
+  justify-content: left;
+}
+
 .search-places-bar {
   position: fixed;
   width: 100%;
@@ -23,4 +28,30 @@ body {
   font-size: 1.25em;
   border: none;
   outline: none;
+}
+
+.theList {
+  list-style: none;
+  padding-left: 0;
+  width: 250px;
+}
+
+.theList li {
+  color: #333;
+  background-color: rgba(255,255,255,.5);
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  list-style: none;
+
+  transition: background-color .2s ease-out;
+}
+
+.theList li:hover {
+  background-color: pink;
+  cursor: pointer;
+}
+
+ul.theList {
+  padding: 0;
 }
