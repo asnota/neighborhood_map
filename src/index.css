@@ -55,6 +55,6 @@ body {
   cursor: pointer;
 }
 
-ul.theList {
+ol.theList {
   padding: 0;
 }

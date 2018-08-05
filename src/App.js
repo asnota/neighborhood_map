@@ -10,6 +10,7 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      venues: [],
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: [
@@ -42,7 +43,12 @@ export class App extends React.Component {
       .query(null)
       .set('Accept', 'text/json')
       .end((error, response) => {
-      console.log(JSON.stringify(response.body))
+
+        const venues = response.body.response.venues
+        console.log(JSON.stringify(venues))
+        this.setState({
+            venues: venues
+        })
     })
   }
 
@@ -53,10 +59,12 @@ export class App extends React.Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    this.setState({
-      selectedPlace: props,
+    this.setState(function(prevState){
+      return  {
+      selectedPlace: prevState.selectedPlace,
       activeMarker: marker,
       showingInfoWindow: true
+      };
     });
   }
   onMapClick = (props) => {
@@ -104,7 +112,6 @@ export class App extends React.Component {
               title={this.state.selectedPlace.title}
               name={this.state.selectedPlace.name}
               position={{lat: 37.759703, lng: -122.428093}}
-              onMouseover={this.onMouseoverMarker}
               onClick={this.onMarkerClick}
             />
 
@@ -117,7 +124,7 @@ export class App extends React.Component {
               </div>
           </InfoWindow>
 
-          <ListItems selectedPlace={this.state.selectedPlace}/>
+          <ListItems venues={this.state.venues}/>
 
           <Search />
         </Map>
