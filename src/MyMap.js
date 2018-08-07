@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import Search from './Search'
 import ListItems from './ListItems'
 
 export class MyMap extends React.Component {
@@ -24,6 +23,7 @@ export class MyMap extends React.Component {
     );
   }
 
+
   render(){
 
     const markers = this.props.venues.map((venue, i) => {
@@ -33,7 +33,7 @@ export class MyMap extends React.Component {
           lng: venue.location.lng
         }
       }
-      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name}/>
+      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
     })
 
 
@@ -41,13 +41,19 @@ export class MyMap extends React.Component {
       <Map
         google = {this.props.google}
         center = {this.props.center}
-        zoom = {17}
+        zoom = {13}
+        onClick={this.onMapClick}
         >
         {markers}
 
-        <InfoWindow marker={this.state.activeMarker} visible={this.state.showingWindow}>{this.props.venues.name}</InfoWindow>
-        <ListItems venues={this.props.venues}/>
-        <Search />
+        <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+          <div>
+            <h3>{this.state.activeMarker.title}</h3>
+            <h4>{this.state.activeMarker.address}</h4>
+          </div>
+        </InfoWindow>
+        <ListItems venues={this.props.venues} marker={this.state.activeMarker}/>
+
       </Map>
     )
   }

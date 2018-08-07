@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "escape-string-regexp": "^1.0.5",
     "google-maps-react": "^2.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-native-elements": "^0.19.1",
     "react-scripts": "1.1.4",
+    "sort-by": "^1.2.0",
     "superagent": "^3.8.3"
   },
   "scripts": {
