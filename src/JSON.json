@@ -1,0 +1,67 @@
+{"meta":{"code":200,"requestId":"5b6a9dc44434b92acaf9700b"},
+"response":{"venues":[
+
+{"id":"4b75f4bcf964a520ed312ee3","name":"Palais Montcalm",
+"location":{"address":"995 D'Youville","lat":46.81240512414711,"lng":-71.2139403326507,
+"labeledLatLngs":[{"label":"display","lat":46.81240512414711,"lng":-71.2139403326507}],
+"distance":47,"cc":"CA","city":"Québec","state":"QC","country":"Canada","formattedAddress":["995 D'Youville","Québec QC","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"4b5bc104f964a520471429e3","name":"Le Capitole  (Salle)",
+"location":{"address":"972, rue Saint-Jean","lat":46.81331725227038,"lng":-71.21435986351878,
+"labeledLatLngs":[{"label":"display","lat":46.81331725227038,"lng":-71.21435986351878}],
+"distance":116,"postalCode":"G1R 1R5","cc":"CA","city":"Québec","state":"PQ","country":"Canada",
+"formattedAddress":["972, rue Saint-Jean","Québec PQ G1R 1R5","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"4ff38f24e4b024f5586eff54","name":"Theatre Du Capitole De Quebec","location":{"address":"Place d'Youville","lat":46.813390221577826,"lng":-71.21449415203047,
+"labeledLatLngs":[{"label":"display","lat":46.813390221577826,"lng":-71.21449415203047}],
+"distance":123,"cc":"CA","city":"Québec","state":"QC","country":"Canada",
+"formattedAddress":["Place d'Youville","Québec QC","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"57841cb5498ee3d00078c857","name":"Le Coeur Du FEQ","location":{"lat":46.8103,"lng":-71.21147,"labeledLatLngs":[{"label":"display","lat":46.8103,"lng":-71.21147}],
+"distance":321,"postalCode":"G1R 3Z7","cc":"CA","city":"Québec","state":"QC","country":"Canada",
+"formattedAddress":["Québec QC G1R 3Z7","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"4e94f781be7b0b0593eb7b31","name":"P572's HQ","location":{"lat":46.82559,"lng":-71.233423,"labeledLatLngs":[{"label":"display","lat":46.82559,"lng":-71.233423}],
+"distance":2065,"cc":"CA","city":"Québec","state":"QC","country":"Canada",
+"formattedAddress":["Québec QC","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"4b7894ebf964a52040d82ee3","name":"Pavillon de la Jeunesse",
+"location":{
+"address":"250, boul Wilfrid-Hamel","lat":46.827303027501074,"lng":-71.24827129841508,"labeledLatLngs":[{"label":"display","lat":46.827303027501074,"lng":-71.24827129841508}],
+"distance":3065,"postalCode":"G1L 5A7","cc":"CA","city":"Québec","state":"QC","country":"Canada",
+"formattedAddress":["250, boul Wilfrid-Hamel","Québec QC G1L 5A7","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"53b5dced498e55a100a93aaa","name":"Festival d'été de Quebec - Scène Bell",
+"location":{"lat":46.80571731516368,"lng":-71.21210569263009,"labeledLatLngs":[{"label":"display","lat":46.80571731516368,"lng":-71.21210569263009}],
+"distance":753,"cc":"CA","country":"Canada",
+"formattedAddress":["Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false},
+
+{"id":"4b738af9f964a52054b32de3","name":"Impérial de Québec",
+"location":{
+"address":"252 rue St-Joseph Est","crossStreet":"btwn Dorchester & Caron","lat":46.81337694176719,"lng":-71.22779362944014,"labeledLatLngs":[{"label":"display","lat":46.81337694176719,"lng":-71.22779362944014}],
+"distance":1017,"postalCode":"G1K 3A9","cc":"CA","city":"Québec","state":"QC","country":"Canada",
+"formattedAddress":["252 rue St-Joseph Est (btwn Dorchester & Caron)","Québec QC G1K 3A9","Canada"]},
+"categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
+"icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
+"referralId":"v-1533713860","hasPerk":false}],"confident":true}}	

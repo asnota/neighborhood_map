@@ -22,7 +22,16 @@ class ListItems extends Component {
         marker: this.props.marker
       }
     );
-  }
+
+    const iteration = this.props.venues.map(venue => {
+      if(venue.name === this.props.marker.name){
+        this.props.marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        venue.setAnimation(window.google.maps.Animation.BOUNCE);
+        }
+      })
+
+    return iteration
+    }
 
 
   render(){
@@ -77,7 +86,6 @@ class ListItems extends Component {
 
         <ol
           tabIndex="0"
-          role="list"
           aria-label="List of concert halls"
           className="theList"
           >

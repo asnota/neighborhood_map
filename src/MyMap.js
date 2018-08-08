@@ -31,9 +31,11 @@ export class MyMap extends React.Component {
         position: {
           lat: venue.location.lat,
           lng: venue.location.lng
-        }
+        },
+        animation: window.google.maps.Animation.DROP
       }
-      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
+      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address} formattedAddress={venue.location.formattedAddress}/>
+
     })
 
 
