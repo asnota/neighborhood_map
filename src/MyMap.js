@@ -8,6 +8,7 @@ export class MyMap extends React.Component {
       this.state = {
         showingInfoWindow: false,
         activeMarker: {},
+
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
@@ -23,6 +24,16 @@ export class MyMap extends React.Component {
     );
   }
 
+  onListItemClick = (marker) => {
+    this.setState(
+      {
+        venues: this.props.venues,
+        activeMarker: marker,
+        showingWindow: true
+      }
+    );
+  }
+
 
   render(){
 
@@ -34,7 +45,7 @@ export class MyMap extends React.Component {
         },
         animation: window.google.maps.Animation.DROP
       }
-      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address} formattedAddress={venue.location.formattedAddress}/>
+      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
 
     })
 
@@ -54,7 +65,7 @@ export class MyMap extends React.Component {
             <h4>{this.state.activeMarker.address}</h4>
           </div>
         </InfoWindow>
-        <ListItems venues={this.props.venues} marker={this.state.activeMarker}/>
+        <ListItems venues={this.props.venues} marker={this.state.activeMarker} onListItemClick={this.onListItemClick}/>
 
       </Map>
     )

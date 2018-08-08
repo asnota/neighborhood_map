@@ -15,24 +15,6 @@ class ListItems extends Component {
     this.setState({ query: '' })
   }
 
-  onListItemClick = (props, marker, e) => {
-    this.setState(
-      {
-        venues: this.props.venues,
-        marker: this.props.marker
-      }
-    );
-
-    const iteration = this.props.venues.map(venue => {
-      if(venue.name === this.props.marker.name){
-        this.props.marker.setAnimation(window.google.maps.Animation.BOUNCE);
-        venue.setAnimation(window.google.maps.Animation.BOUNCE);
-        }
-      })
-
-    return iteration
-    }
-
 
   render(){
 
@@ -52,7 +34,7 @@ class ListItems extends Component {
       return (
           <li
             key={venue.id}
-            onClick={this.onListItemClick}
+            onClick={this.props.onListItemClick}
           >
             {venue.name}
           </li>
