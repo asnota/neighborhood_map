@@ -18,6 +18,7 @@ export class MyMap extends React.Component {
       this.onListItemClick  = this.onListItemClick.bind(this);
       this.updateQuery = this.updateQuery.bind(this);
       this.clearQuery = this.clearQuery.bind(this);
+      this.onMapClicked = this.onMapClicked.bind(this);
     }
 
     updateQuery = (query) => {
@@ -38,13 +39,22 @@ export class MyMap extends React.Component {
       );
     }
 
-  onListItemClick = (item) => {
-    this.setState(
-        {
-          activeItem: item,
-        }
-    );
-  }
+    onMapClicked = (props) => {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        })
+      }
+    };
+
+    onListItemClick = (item) => {
+      this.setState(
+          {
+            activeItem: item,
+          }
+      );
+    }
 
 
   render(){
@@ -72,7 +82,7 @@ export class MyMap extends React.Component {
         )
     })
 
-    const markers = showingVenues.map((venue, i) => {
+    const markers = showingVenues.map((venue, item) => {
       const marker = {
         position: {
           lat: venue.location.lat,
@@ -87,8 +97,7 @@ export class MyMap extends React.Component {
               onClick={this.onMarkerClick}
               title={venue.name}
               address={venue.location.address}
-              animation={(this.state.activeMarker === this.state.activeItem)
-                && this.google.maps.Animation.DROP}
+              animation={this.state.activeMarker ? (venue.name === this.state.activeMarker.title ? '1' : '0') : '0'}
               />
     })
 
