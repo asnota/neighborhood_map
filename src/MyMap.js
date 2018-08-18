@@ -38,18 +38,11 @@ export class MyMap extends React.Component {
       );
     }
 
-  onListItemClick = (item, marker, e) => {
-
-    if(item.name === this.state.activeMarker){
-      this.state.activeMarker.setAnimation.BOUNCE;
-    }
-
+  onListItemClick = (item) => {
     this.setState(
         {
           activeItem: item,
-          activeMarker: marker,
-          showingInfoWindow: true
-      }
+        }
     );
   }
 
@@ -72,13 +65,12 @@ export class MyMap extends React.Component {
       return (
           <li
             key={venue.id}
-            onClick={this.props.onListItemClick}
+            onClick={this.onListItemClick}
           >
             {venue.name}
           </li>
         )
     })
-
 
     const markers = showingVenues.map((venue, i) => {
       const marker = {
@@ -86,9 +78,18 @@ export class MyMap extends React.Component {
           lat: venue.location.lat,
           lng: venue.location.lng
         },
-        animation: window.google.maps.Animation.DROP
+      //  animation: window.google.maps.Animation.DROP
         }
-      return <Marker key={venue.id} {...marker}  updateQuery={this.updateQuery} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
+      return <Marker
+              key={venue.id}
+              {...marker}
+              updateQuery={this.updateQuery}
+              onClick={this.onMarkerClick}
+              title={venue.name}
+              address={venue.location.address}
+              animation={(this.state.activeMarker === this.state.activeItem)
+                && this.google.maps.Animation.DROP}
+              />
     })
 
 
