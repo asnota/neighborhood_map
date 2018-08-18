@@ -38,15 +38,21 @@ export class MyMap extends React.Component {
       );
     }
 
-   onListItemClick = (item) => {
-      const self = this;
-      if (self.activeItem) {
-            this.state.activeMarker.setAnimation.BOUNCE;
-          }
-          this.setState({
-            activeItem: item
-        });
+  onListItemClick = (item, marker, e) => {
+
+    if(item.name === this.state.activeMarker){
+      this.state.activeMarker.setAnimation.BOUNCE;
     }
+
+    this.setState(
+        {
+          activeItem: item,
+          activeMarker: marker,
+          showingInfoWindow: true
+      }
+    );
+  }
+
 
   render(){
 
