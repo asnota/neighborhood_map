@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import ListItems from './ListItems'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
+//import ListItems from './ListItems'
 
 export class MyMap extends React.Component {
     constructor() {
@@ -8,45 +10,79 @@ export class MyMap extends React.Component {
       this.state = {
         showingInfoWindow: false,
         activeMarker: {},
+        activeItem: {},
+        query: ''
 
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
+      this.onListItemClick  = this.onListItemClick.bind(this);
+      this.updateQuery = this.updateQuery.bind(this);
+      this.clearQuery = this.clearQuery.bind(this);
     }
 
+    updateQuery = (query) => {
+      this.setState({ query: query.trim() })
+    }
 
-  onMarkerClick = (props, marker, e) => {
-    this.setState(
-      {
-      venues: this.props.venues,
-      activeMarker: marker,
-      showingInfoWindow: true
-      }
-    );
-  }
+    clearQuery = () => {
+      this.setState({ query: '' })
+    }
 
-  onListItemClick = (marker) => {
-    this.setState(
-      {
+    onMarkerClick = (props, marker, e) => {
+      this.setState(
+        {
         venues: this.props.venues,
         activeMarker: marker,
-        showingWindow: true
-      }
-    );
-  }
+        showingInfoWindow: true
+        }
+      );
+    }
 
+   onListItemClick = (item) => {
+      const self = this;
+      if (self.activeItem) {
+            this.state.activeMarker.setAnimation.BOUNCE;
+          }
+          this.setState({
+            activeItem: item
+        });
+    }
 
   render(){
 
-    const markers = this.props.venues.map((venue, i) => {
+    const { venues } = this.props
+    const { query } = this.state
+
+    let showingVenues
+    if(query){
+      const match = new RegExp(escapeRegExp(query), 'i')
+      showingVenues = venues.filter((venue) => match.test(venue.name))
+    } else {
+      showingVenues = venues
+    }
+    showingVenues.sort(sortBy('name'))
+
+    const list = showingVenues.map((venue) => {
+      return (
+          <li
+            key={venue.id}
+            onClick={this.props.onListItemClick}
+          >
+            {venue.name}
+          </li>
+        )
+    })
+
+
+    const markers = showingVenues.map((venue, i) => {
       const marker = {
         position: {
           lat: venue.location.lat,
           lng: venue.location.lng
         },
         animation: window.google.maps.Animation.DROP
-      }
-      return <Marker key={venue.id} {...marker} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
-
+        }
+      return <Marker key={venue.id} {...marker}  updateQuery={this.updateQuery} onClick={this.onMarkerClick} title={venue.name} address={venue.location.address}/>
     })
 
 
@@ -65,13 +101,40 @@ export class MyMap extends React.Component {
             <h4>{this.state.activeMarker.address}</h4>
           </div>
         </InfoWindow>
-        <ListItems venues={this.props.venues} marker={this.state.activeMarker} onListItemClick={this.onListItemClick}/>
 
+        {showingVenues.length !== venues.length && (
+          <div className='showing-venues'>
+            <span>Now showing {showingVenues.length} of {venues.length} total</span>
+            <button onClick={this.clearQuery}>Show all</button>
+          </div>
+        )}
+
+        <div className="search-places">
+          <div className="search-places-bar">
+            <div className="search-places-input-wrapper">
+              <input
+                role="search"
+                aria-labelledby="filter"
+                type='text'
+                placeholder='Search places'
+                value={query}
+                onChange={(event) => this.updateQuery(event.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <ol
+          tabIndex="0"
+          aria-label="List of concert halls"
+          className="theList"
+          >
+          {list}
+        </ol>
       </Map>
     )
   }
 }
-
 
 
 export default GoogleApiWrapper({
