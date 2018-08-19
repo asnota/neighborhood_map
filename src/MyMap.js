@@ -14,11 +14,9 @@ export class MyMap extends React.Component {
         query: ''
 
       }
-      this.onMarkerClick = this.onMarkerClick.bind(this);
       this.onListItemClick  = this.onListItemClick.bind(this);
       this.updateQuery = this.updateQuery.bind(this);
       this.clearQuery = this.clearQuery.bind(this);
-      this.onMapClicked = this.onMapClicked.bind(this);
     }
 
     updateQuery = (query) => {
@@ -39,7 +37,7 @@ export class MyMap extends React.Component {
       );
     }
 
-    onMapClicked = (props) => {
+    onMapClick = (props) => {
       if (this.state.showingInfoWindow) {
         this.setState({
           showingInfoWindow: false,
@@ -48,14 +46,14 @@ export class MyMap extends React.Component {
       }
     };
 
-    onListItemClick = (item) => {
+    onListItemClick = (props, marker) => {
       this.setState(
           {
-            activeItem: item,
+            activeItem: this.props.venues,
+            activeMarker: this.props.venues
           }
       );
     }
-
 
   render(){
 
@@ -82,7 +80,7 @@ export class MyMap extends React.Component {
         )
     })
 
-    const markers = showingVenues.map((venue, item) => {
+    const markers = showingVenues.map((venue) => {
       const marker = {
         position: {
           lat: venue.location.lat,
@@ -94,7 +92,7 @@ export class MyMap extends React.Component {
               key={venue.id}
               {...marker}
               updateQuery={this.updateQuery}
-              onClick={this.onMarkerClick}
+              onClick={this.onMarkerClick.bind(this)}
               title={venue.name}
               address={venue.location.address}
               animation={this.state.activeMarker ? (venue.name === this.state.activeMarker.title ? '1' : '0') : '0'}
@@ -107,7 +105,7 @@ export class MyMap extends React.Component {
         google = {this.props.google}
         center = {this.props.center}
         zoom = {13}
-        onClick={this.onMapClick}
+        onClick={this.onMapClick.bind(this)}
         >
         {markers}
 
@@ -115,6 +113,7 @@ export class MyMap extends React.Component {
           <div>
             <h3>{this.state.activeMarker.title}</h3>
             <h4>{this.state.activeMarker.address}</h4>
+            <img src={require('./powered-by-foursquare-blue.png')} width="150" height="15" alt="Powered by Foursquare"/>
           </div>
         </InfoWindow>
 
