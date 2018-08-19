@@ -11,6 +11,7 @@ export class App extends React.Component {
     }
   }
 
+//Fetch Foursquare data using superagent
   componentDidMount(){
     const url = 'https://api.foursquare.com/v2/venues/search?v=20180806&ll=46.81228,-71.21454&client_id=W5B33OBMWMISIC0NDNCNS25RHTGUCCCBHKYVMZIQVBNHEXJW&client_secret=GIF3FZKN1JP0MMGCBMDKJCHTVDNHWSRDRIBDEGK2VC3AM1QX&limit=8&categoryId=5032792091d4c4b30a586d5c'
 
@@ -27,19 +28,6 @@ export class App extends React.Component {
         })
     })
   }
-
-/*
-
-  onMarkerClick = (props, marker, e) => {
-    this.setState(function(prevState){
-      return  {
-      selectedPlace: prevState.selectedPlace,
-      activeMarker: marker,
-      showingInfoWindow: true
-      };
-    });
-  }
-*/
 
   render() {
         const location = {

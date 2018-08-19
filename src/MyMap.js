@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
-//import ListItems from './ListItems'
 
 export class MyMap extends React.Component {
     constructor() {
@@ -12,9 +11,7 @@ export class MyMap extends React.Component {
         activeMarker: {},
         activeItem: {},
         query: ''
-
       }
-      this.onListItemClick  = this.onListItemClick.bind(this);
       this.updateQuery = this.updateQuery.bind(this);
       this.clearQuery = this.clearQuery.bind(this);
     }
@@ -49,7 +46,8 @@ export class MyMap extends React.Component {
       this.setState(
           {
             activeItem: this.props.venues,
-            activeMarker: marker
+          //  activeMarker: marker,
+          //  showingInfoWindow: true
           }
       );
     }
@@ -59,6 +57,7 @@ export class MyMap extends React.Component {
     const { venues } = this.props
     const { query } = this.state
 
+//Storing the result of query in showingVenues in order to map over in markers and items
     let showingVenues
     if(query){
       const match = new RegExp(escapeRegExp(query), 'i')
@@ -68,16 +67,6 @@ export class MyMap extends React.Component {
     }
     showingVenues.sort(sortBy('name'))
 
-    const list = showingVenues.map((venue) => {
-      return (
-          <li
-            key={venue.id}
-            onClick={this.onListItemClick}
-          >
-            {venue.name}
-          </li>
-        )
-    })
 
     const markers = showingVenues.map((venue) => {
       const marker = {
@@ -96,6 +85,18 @@ export class MyMap extends React.Component {
               address={venue.location.address}
               animation={this.state.activeMarker ? (venue.name === this.state.activeMarker.title ? '1' : '0') : '0'}
               />
+    })
+
+    const list = showingVenues.map((venue) => {
+      return (
+          <li
+            key={venue.id}
+            onClick={this.onListItemClick.bind(this)}
+          >
+            {venue.name}
+          </li>
+
+        )
     })
 
 

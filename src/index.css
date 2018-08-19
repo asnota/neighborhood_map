@@ -4,7 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-
 .search-places-bar {
   position: fixed;
   width: 20%;
@@ -32,7 +31,7 @@ body {
   list-style: none;
   margin-top: 80px;
   padding-left: 0;
-  width: 250px;
+  width: 25%;
 }
 
 .theList li {
@@ -42,7 +41,6 @@ body {
   margin-bottom: 15px;
   border-radius: 5px;
   list-style: none;
-
   transition: background-color .3s ease-out;
 }
 
@@ -68,4 +66,32 @@ ol.theList {
   border: none;
   cursor: pointer;
   font-size: inherit;
+}
+//===========================Responsiveness===================================
+
+@media screen and (max-width: 800px){
+	.theList{
+		width: 35%;
+	}
+  .search-places-bar {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1322px) {
+  .theList{
+    width: 30%;
+  }
+  .search-places-bar {
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 1323px) {
+  .theList{
+		width: 20%;
+	}
+  .search-places-bar {
+    width: 20%;
+  }
 }
