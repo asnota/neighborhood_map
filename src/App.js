@@ -28,11 +28,7 @@ export class App extends React.Component {
     })
   }
 
-/*  componentWillUnmount() {
-    if (this.marker) {
-      this.marker.setMap(null);
-    }
-  }
+/*
 
   onMarkerClick = (props, marker, e) => {
     this.setState(function(prevState){
@@ -43,16 +39,7 @@ export class App extends React.Component {
       };
     });
   }
-  onMapClick = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
-    }
-  }
 */
-
 
   render() {
         const location = {

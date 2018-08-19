@@ -30,9 +30,9 @@ export class MyMap extends React.Component {
     onMarkerClick = (props, marker, e) => {
       this.setState(
         {
-        venues: this.props.venues,
-        activeMarker: marker,
-        showingInfoWindow: true
+          venues: this.props.venues,
+          activeMarker: marker,
+          showingInfoWindow: true
         }
       );
     }
@@ -41,7 +41,6 @@ export class MyMap extends React.Component {
       if (this.state.showingInfoWindow) {
         this.setState({
           showingInfoWindow: false,
-          activeMarker: null
         })
       }
     };
@@ -50,7 +49,7 @@ export class MyMap extends React.Component {
       this.setState(
           {
             activeItem: this.props.venues,
-            activeMarker: this.props.venues
+            activeMarker: marker
           }
       );
     }
