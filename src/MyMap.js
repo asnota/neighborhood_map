@@ -99,7 +99,6 @@ export class MyMap extends React.Component {
         )
     })
 
-
     return(
       <Map
         google = {this.props.google}

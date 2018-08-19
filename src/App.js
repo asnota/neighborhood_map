@@ -36,9 +36,7 @@ export class App extends React.Component {
         }
 
       return (
-
           <MyMap center={location} venues={this.state.venues} />
-
       );
     }
 }
