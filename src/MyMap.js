@@ -55,22 +55,21 @@ export class MyMap extends React.Component {
       );
     }
 */
+
     onListItemClick = () => {
-		  let myMarkersArray = document.querySelectorAll('map area'); // Returns a NodeList
-      let myLiArray = document.getElementsByTagName('li'); //Retunds HTMLCollection
+		  const myMarkersNodesList = document.querySelectorAll('map area'); // Returns a NodeList
+      const myMarkersArray = [...myMarkersNodesList]; // Converts to an Array Object
+      const myLiArray = document.getElementsByTagName('li'); //Retunds a HTMLCollection
 
       if (myLiArray.length !== 0) {
         for(let i = 0; i < myLiArray.length; i++){
             myLiArray[i].addEventListener("click", function(e){
-
-              if (myLiArray[i].getAttribute('name') === myMarkersArray[i].getAttribute('title')){
-                myMarkersArray[i].click();
-                i = 0;
-            }
-          });
+              let foundMarker = myMarkersArray.find(marker => marker.getAttribute('title') === myLiArray[i].getAttribute('name'))
+              foundMarker.click();
+            });
+          }
         }
       }
-		}
 
 
   render(){
