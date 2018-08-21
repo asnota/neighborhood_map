@@ -29,6 +29,16 @@ export class App extends React.Component {
     })
   }
 
+/*      onListItemClick = (props, marker) => {
+        this.setState(
+            {
+              activeItem: this.venues,
+            //  activeMarker: marker,
+            //  showingInfoWindow: true
+            }
+        );
+      }
+*/
   render() {
         const location = {
           lat: 46.81228,
