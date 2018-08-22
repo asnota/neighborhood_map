@@ -9,7 +9,7 @@ export class MyMap extends React.Component {
       super(props);
       //Create a ref to store the marker DOM element
       this.markRef = React.createRef();
-      this.onMarkerClick = this.onMarkerClick.bind(this)
+      this.onMarkerClick = this.onMarkerClick.bind(this);
 
       this.state = {
         showingInfoWindow: false,

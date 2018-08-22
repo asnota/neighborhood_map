@@ -19,7 +19,6 @@ export class App extends React.Component {
           location:{address:"252 rue St-Joseph Est",lat:46.81337694176719,lng:-71.22779362944014}},
         { name: "Festival d'été de Quebec - Scène Bell",
             location:{lat:46.80571731516368,lng:-71.21210569263009}}
-
       ]
     }
   }
@@ -40,21 +39,18 @@ export class App extends React.Component {
         this.setState({
             venues: venues
         })
+
+        if (error) {
+          const errorContainer = document.querySelector('.theList');
+          errorContainer.innerHTML = `
+                <div class = "error-container">
+                  <h3>Something went wrong while trying to get places!</h2>
+                  <div class = "error-message">${error}</div>
+                </div>`;
+        }
     })
   }
 
-
-
-/*      onListItemClick = (props, marker) => {
-        this.setState(
-            {
-              activeItem: this.venues,
-            //  activeMarker: marker,
-            //  showingInfoWindow: true
-            }
-        );
-      }
-*/
 
 onListItemClick = (props, e) => {
   let myMarkersNodesList = document.querySelectorAll('map area'); // Returns a NodeList
@@ -75,7 +71,7 @@ onListItemClick = (props, e) => {
 	handleMapErrors = () => {
 
 		window.gm_authFailure = function () {
-			document.querySelector('.map-container').innerHTML = `
+			document.querySelector('body').innerHTML = `
 				<div class = "error-container">
 						<h3>Ooops... Something went wrong while trying to load the map!</h2>
 				</div>
@@ -103,17 +99,6 @@ onListItemClick = (props, e) => {
 			}
 		}, 1500);
 	}
-
-	// Handle errors from FourSquareAPI
-	handleFourSquareErrors = (error) => {
-		const errorContainer = document.querySelector('.list');
-		errorContainer.innerHTML = `
-					<div class = "error-container">
-						<h3>Something went wrong while trying to get places!</h2>
-						<div class = "error-message">${error}</div>
-					</div>
-				`;
-}
 
 
   render() {
