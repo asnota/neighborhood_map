@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
-import './JSON'
+
 
 export class MyMap extends React.Component {
     constructor(props) {
@@ -31,13 +31,14 @@ export class MyMap extends React.Component {
     }
 
     onMarkerClick = (props, marker, e) => {
+
       console.log(this.markRef)
 
       this.setState(
         {
           venues: this.props.venues,
           activeMarker: marker,
-          showingInfoWindow: true
+          showingInfoWindow: true,
         }
       );
     }
@@ -58,8 +59,7 @@ export class MyMap extends React.Component {
       //    mark: this.ref.marker + this.marker.id
           }
       );
-    }
-*/
+    }*/
 
 
   render(){
@@ -146,7 +146,12 @@ export class MyMap extends React.Component {
           </div>
         </InfoWindow>
 
-
+        {showingVenues.length !== venues.length  && (
+                 <div className='showing-venues'>
+                   <span>Now showing {showingVenues.length} of {venues.length} total</span>
+                   <button onClick={this.clearQuery}>Show all</button>
+                 </div>
+               )}
 
         <div className="search-places">
           <div className="search-places-bar">

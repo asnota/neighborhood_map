@@ -6,6 +6,8 @@ import superagent from 'superagent'
 export class App extends React.Component {
   constructor() {
     super();
+    this.googleError = this.googleError.bind(this);
+
     this.state = {
       venues: [],
       defaultVenues: [
@@ -68,36 +70,13 @@ onListItemClick = (props, e) => {
   }
 
   // Handle errors from map
-	handleMapErrors = () => {
-
+	googleError = () => {
 		window.gm_authFailure = function () {
 			document.querySelector('body').innerHTML = `
 				<div class = "error-container">
-						<h3>Ooops... Something went wrong while trying to load the map!</h2>
-				</div>
-				`;
+          <h3>Something went wrong while trying to load the map!</h2>
+        </div>`;
 		}
-
-		setTimeout(function () {
-			if (document.querySelector('.gm-err-container')) {
-				const errorContainer = document.querySelector('.gm-err-container');
-				const message = document.querySelector('.gm-err-message').innerText;
-				errorContainer.innerHTML = `
-					<div class = "error-container">
-						<h3>Something went wrong while trying to load the map!</h2>
-						<div class = "error-message">${message}</div>
-					</div>
-				`;
-			}
-
-			if (!document.querySelector('#map')) {
-				document.querySelector('.map-container').innerHTML = `
-				<div class = "error-container">
-						<h3>Something went wrong while trying to load the map!</h2>
-				</div>
-				`;
-			}
-		}, 1500);
 	}
 
 
