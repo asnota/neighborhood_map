@@ -1,3 +1,4 @@
+
 {"meta":{"code":200,"requestId":"5b6a9dc44434b92acaf9700b"},
 "response":{"venues":[
 
@@ -64,4 +65,4 @@
 "formattedAddress":["252 rue St-Joseph Est (btwn Dorchester & Caron)","Québec QC G1K 3A9","Canada"]},
 "categories":[{"id":"5032792091d4c4b30a586d5c","name":"Concert Hall","pluralName":"Concert Halls","shortName":"Concert Hall",
 "icon":{"prefix":"https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_","suffix":".png"},"primary":true}],
-"referralId":"v-1533713860","hasPerk":false}],"confident":true}}	
+"referralId":"v-1533713860","hasPerk":false}],"confident":true}}

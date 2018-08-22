@@ -4,6 +4,18 @@ body {
   font-family: sans-serif;
 }
 
+.error-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-message {
+	color: #f00;
+}
+
 .search-places-bar {
   position: fixed;
   top: 0;

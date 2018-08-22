@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import './JSON'
 
 export class MyMap extends React.Component {
     constructor(props) {
       super(props);
-      this.mark = React.createRef();
+      //Create a ref to store the marker DOM element
+      this.markRef = React.createRef();
+      this.onMarkerClick = this.onMarkerClick.bind(this)
 
       this.state = {
         showingInfoWindow: false,
@@ -28,6 +31,8 @@ export class MyMap extends React.Component {
     }
 
     onMarkerClick = (props, marker, e) => {
+      console.log(this.markRef)
+
       this.setState(
         {
           venues: this.props.venues,
@@ -56,36 +61,31 @@ export class MyMap extends React.Component {
     }
 */
 
-    onListItemClick = () => {
-		  const myMarkersNodesList = document.querySelectorAll('map area'); // Returns a NodeList
-      const myMarkersArray = [...myMarkersNodesList]; // Converts to an Array Object
-      const myLiArray = document.getElementsByTagName('li'); //Retunds a HTMLCollection
-
-      if (myLiArray.length !== 0) {
-        for(let i = 0; i < myLiArray.length; i++){
-            myLiArray[i].addEventListener("click", function(e){
-              let foundMarker = myMarkersArray.find(marker => marker.getAttribute('title') === myLiArray[i].getAttribute('name'))
-              foundMarker.click();
-            });
-          }
-        }
-      }
-
 
   render(){
 
-    const { venues } = this.props
+    const { venues, defaultVenues } = this.props
     const { query } = this.state
 
 //Storing the result of query in showingVenues in order to map over in markers and items
     let showingVenues
-    if(query){
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingVenues = venues.filter((venue) => match.test(venue.name))
-    } else {
-      showingVenues = venues
-    }
+    if(venues !== undefined){
+      if(query){
+        const match = new RegExp(escapeRegExp(query), 'i')
+        showingVenues = venues.filter((venue) => match.test(venue.name))
+      } else {
+        showingVenues = venues
+      }
     showingVenues.sort(sortBy('name'))
+    } else {
+      if(query){
+        const match = new RegExp(escapeRegExp(query), 'i')
+        showingVenues = defaultVenues.filter((venue) => match.test(venue.name))
+      } else {
+        showingVenues = defaultVenues
+      }
+    }
+
 
 
     const markers = showingVenues.map((venue) => {
@@ -100,15 +100,16 @@ export class MyMap extends React.Component {
               key={venue.id}
               id={venue.id}
               {...marker}
-              ref={this.mark.current}
+              ref={this.markRef}
               updateQuery={this.updateQuery}
-              onClick={this.onMarkerClick.bind(this)}
+              onClick={this.onMarkerClick}
               name={venue.name}
               title={venue.name}
               address={venue.location.address}
               animation={this.state.activeMarker ? (venue.name === this.state.activeMarker.title ? '1' : '0') : '0'}
               />
     })
+
 
     const list = showingVenues.map((venue) => {
       return (
@@ -118,13 +119,15 @@ export class MyMap extends React.Component {
             name={venue.name}
             title={venue.name}
             address={venue.location.address}
-            onClick={this.onListItemClick.bind(this)}
+            onClick={this.props.onListItemClick.bind(this)}
             tabIndex={'0'}
           >
             {venue.name}
           </li>
         )
     })
+
+
 
     return(
       <Map
@@ -143,12 +146,7 @@ export class MyMap extends React.Component {
           </div>
         </InfoWindow>
 
-        {showingVenues.length !== venues.length && (
-          <div className='showing-venues'>
-            <span>Now showing {showingVenues.length} of {venues.length} total</span>
-            <button onClick={this.clearQuery}>Show all</button>
-          </div>
-        )}
+
 
         <div className="search-places">
           <div className="search-places-bar">
@@ -157,7 +155,7 @@ export class MyMap extends React.Component {
                 role="search"
                 aria-labelledby="filter"
                 type='text'
-                placeholder='Search places'
+                placeholder='Search halls'
                 value={query}
                 onChange={(event) => this.updateQuery(event.target.value)}
               />
