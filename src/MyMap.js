@@ -52,14 +52,11 @@ export class MyMap extends React.Component {
     };
 
   /*  onListItemClick = (props, e) => {
-      this.setState(
-          {
+      this.setState({
             activeItem: this.props.venues,
-      //    mark: this.mark.current
-      //    mark: this.ref.marker + this.marker.id
-          }
-      );
-    }*/
+            mark: markRef.current
+          });
+     }*/
 
 
   render(){
@@ -87,7 +84,6 @@ export class MyMap extends React.Component {
     }
 
 
-
     const markers = showingVenues.map((venue) => {
       const marker = {
         position: {
@@ -110,7 +106,6 @@ export class MyMap extends React.Component {
               />
     })
 
-
     const list = showingVenues.map((venue) => {
       return (
           <li
@@ -126,8 +121,6 @@ export class MyMap extends React.Component {
           </li>
         )
     })
-
-
 
     return(
       <Map
